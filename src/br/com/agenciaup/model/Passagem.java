@@ -4,6 +4,7 @@ public class Passagem {
 	private int id_passagem,id_cliente,id_destino;
 	private Cliente cliente;
 	private Destino destino;
+	private double preco;
 
 	public int getId_cliente() {
 		return id_cliente;
@@ -43,6 +44,14 @@ public class Passagem {
 
 	public void setId_passagem(int id_passagem) {
 		this.id_passagem = id_passagem;
+	}
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
 	
 	

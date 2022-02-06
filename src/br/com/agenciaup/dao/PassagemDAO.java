@@ -17,7 +17,7 @@ public class PassagemDAO {
 	private String sqlQuery;
 	
 	public void save(Passagem passagem) {
-		sqlQuery = "INSERT INTO passagem(id_cliente,id_destino)" + " VALUES (?, ?)";
+		sqlQuery = "INSERT INTO passagem(id_cliente,id_destino, preco)" + " VALUES (?, ?, ?)";
 		
 		try {
 			conn = AgenciaFactory.createConnectionSQLServer();
@@ -25,6 +25,7 @@ public class PassagemDAO {
 			
 			pstm.setInt(1, passagem.getId_cliente());
 			pstm.setInt(2, passagem.getId_destino());
+			pstm.setDouble(3, passagem.getPreco());
 			
 			pstm.execute();
 		}catch (Exception e) {
@@ -71,7 +72,7 @@ public class PassagemDAO {
 	}
 
 	public void update(Passagem passagem,int id) {
-		sqlQuery = "UPDATE passagem SET id_cliente = ?, id_destino = ? WHERE id_passagem = ?";
+		sqlQuery = "UPDATE passagem SET id_cliente = ?, id_destino = ?, preco = ? WHERE id_passagem = ?";
 		
 		try {
 			conn = AgenciaFactory.createConnectionSQLServer();
@@ -79,7 +80,8 @@ public class PassagemDAO {
 			
 			pstm.setInt(1, passagem.getId_cliente());
 			pstm.setInt(2, passagem.getId_destino());
-			pstm.setInt(3, id);
+			pstm.setDouble(3, passagem.getPreco());
+			pstm.setInt(4, id);
 			pstm.execute();
 			
 			System.out.println("Sucesso");
@@ -100,7 +102,7 @@ public class PassagemDAO {
 	}
 
 	public List<Passagem> getPassagens() {
-		sqlQuery = "SELECT p.id_passagem, c.id_cliente, c.nome , d.id_destino, d.cidade, d.estado, d.pais FROM passagem AS p "
+		sqlQuery = "SELECT p.id_passagem,p.preco, c.id_cliente, c.nome , d.id_destino, d.cidade, d.estado, d.pais FROM passagem AS p "
 				+ "INNER JOIN cliente AS c ON p.id_cliente = c.id_cliente "
 				+ "INNER JOIN destino AS d ON p.id_destino = d.id_destino";
 		
@@ -120,6 +122,7 @@ public class PassagemDAO {
 				passagem.setId_passagem(rset.getInt("id_passagem"));
 				passagem.setId_cliente(rset.getInt("id_cliente"));
 				passagem.setId_destino(rset.getInt("id_destino"));
+				passagem.setPreco(rset.getDouble("preco"));
 				cliente.setId_cliente(rset.getInt("id_cliente"));
 				cliente.setNome(rset.getString("nome"));
 				destino.setId_destino(rset.getInt("id_destino"));

@@ -8,18 +8,19 @@ public class PassagemTeste {
 	public static void main(String[] args) {
 		PassagemDAO passagemDao = new PassagemDAO();
 		
-//		Passagem passagem = new Passagem();
-//		passagem.setId_cliente(2);
-//		passagem.setId_destino(3);
-////		
+		Passagem passagem = new Passagem();
+		passagem.setId_cliente(3);
+		passagem.setId_destino(1);
+		passagem.setPreco(1340.20);	
 //		passagemDao.save(passagem);
 		
 //		passagemDao.removeById(1);
 		
-//		passagemDao.update(passagem,2);
+		passagemDao.update(passagem,2);
 		
 		for (Passagem p : passagemDao.getPassagens()) {
-		System.out.println("Id_passagem: " + p.getId_passagem());
+		System.out.print("Id_passagem: " + p.getId_passagem());
+		System.out.format(" | Preço R$: %.2f\n", p.getPreco());
 		System.out.print("Id_cliente: " + p.getId_cliente());
 		System.out.println(" | Nome: " + p.getCliente().getNome());
 		System.out.print("Id_destino: " + p.getId_destino());
