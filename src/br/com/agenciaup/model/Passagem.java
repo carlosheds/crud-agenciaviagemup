@@ -1,7 +1,7 @@
 package br.com.agenciaup.model;
 
 public class Passagem {
-	private int id_cliente,id_destino;
+	private int id_passagem,id_cliente,id_destino;
 	private Cliente cliente;
 	private Destino destino;
 
@@ -35,6 +35,14 @@ public class Passagem {
 
 	public void setDestino(Destino destino) {
 		this.destino = destino;
+	}
+
+	public int getId_passagem() {
+		return id_passagem;
+	}
+
+	public void setId_passagem(int id_passagem) {
+		this.id_passagem = id_passagem;
 	}
 	
 	

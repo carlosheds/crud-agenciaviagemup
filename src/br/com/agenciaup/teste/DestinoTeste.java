@@ -17,7 +17,7 @@ public class DestinoTeste {
 		
 //		destinoDao.removeById(2);
 		
-		destinoDao.update(destino,3);
+//		destinoDao.update(destino,3);
 		
 		for (Destino c : destinoDao.getDestinos()) {
 		System.out.print("Id: " + c.getId_destino());
