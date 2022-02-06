@@ -2,6 +2,9 @@ package br.com.agenciaup.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.com.agenciaup.factory.AgenciaFactory;
 import br.com.agenciaup.model.Cliente;
@@ -92,5 +95,45 @@ public class ClienteDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	public List<Cliente> getClientes() {
+		sqlQuery = "Select * FROM cliente";
+		
+		List<Cliente> clientes = new ArrayList<Cliente>();
+		
+		ResultSet rset = null;
+		
+		try {
+			conn = AgenciaFactory.createConnectionSQLServer();
+			pstm = conn.prepareStatement(sqlQuery);
+			rset = pstm.executeQuery();
+			
+			while (rset.next()) {
+				Cliente cliente = new Cliente();
+				
+				cliente.setNome(rset.getString("nome"));
+				cliente.setIdade(rset.getInt("idade"));
+				
+				clientes.add(cliente);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rset != null) {
+					rset.close();
+				}
+				if(pstm != null) {
+					pstm.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return clientes;
 	}
 }
