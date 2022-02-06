@@ -64,4 +64,33 @@ public class ClienteDAO {
 			}
 		}
 	}
+
+	public void update(Cliente cliente,int id) {
+		sqlQuery = "UPDATE cliente SET nome = ?, idade = ? WHERE id_cliente = ?";
+		
+		try {
+			conn = AgenciaFactory.createConnectionSQLServer();
+			pstm = conn.prepareStatement(sqlQuery);
+			
+			pstm.setString(1, cliente.getNome());
+			pstm.setInt(2, cliente.getIdade());
+			pstm.setInt(3, id);
+			pstm.execute();
+			
+			System.out.println("Sucesso");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if (pstm != null) {
+					pstm.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
 }
