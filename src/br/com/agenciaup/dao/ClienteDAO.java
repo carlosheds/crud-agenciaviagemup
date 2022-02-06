@@ -111,7 +111,7 @@ public class ClienteDAO {
 			
 			while (rset.next()) {
 				Cliente cliente = new Cliente();
-				
+				cliente.setId_cliente(rset.getInt("id_cliente"));
 				cliente.setNome(rset.getString("nome"));
 				cliente.setIdade(rset.getInt("idade"));
 				

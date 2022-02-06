@@ -19,7 +19,8 @@ public class ClienteTeste {
 //		clienteDao.update(cliente,2);
 		
 		for (Cliente c : clienteDao.getClientes()) {
-		System.out.print("Nome: " + c.getNome());
+			System.out.print("Id: " + c.getId_cliente());
+		System.out.print(" | Nome: " + c.getNome());
 		System.out.println(" | Idade: " + c.getIdade());
 		}
 	}
