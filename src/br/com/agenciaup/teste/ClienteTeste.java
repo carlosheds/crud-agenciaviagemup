@@ -9,10 +9,10 @@ public class ClienteTeste {
 		ClienteDAO clienteDao = new ClienteDAO();
 		
 		Cliente cliente = new Cliente();
-		cliente.setNome("Marcela");
-		cliente.setIdade(29);
+		cliente.setNome("Carlos");
+		cliente.setIdade(28);
 //		
-//		clienteDao.save(cliente);
+		clienteDao.save(cliente);
 		
 //		clienteDao.removeById(1);
 		
